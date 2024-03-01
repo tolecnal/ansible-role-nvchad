@@ -1,0 +1,41 @@
+---
+- name: Converge
+  hosts: all
+  become: true
+  become_user: root
+
+  vars:
+    nodejs_version: "20.x"
+    nodejs_install_npm_user: root
+
+  pre_tasks:
+    - name: Update apt cache
+      ansible.builtin.apt:
+        update_cache: true
+        cache_valid_time: 600
+      changed_when: false
+      when: ansible_os_family == 'Debian'
+
+  roles:
+    - role: tolecnal.nvchad
+
+  post_tasks:
+    - name: Verify .tmux.conf exists
+      ansible.builtin.stat:
+        path: ~/.tmux.conf
+      register: conf_result
+
+    - name: File exists
+      ansible.builtin.debug:
+        msg: "tmux configuration file exists"
+      when: conf_result.stat.exists
+
+    - name: Verify that TPM is installed
+      ansible.builtin.stat:
+        path: ~/.tmux/plugins/tpm/tpm
+      register: tpm_result
+
+    - name: TPM is installed
+      ansible.builtin.debug:
+        msg: "TPM is installed"
+      when: tpm_result.stat.exists

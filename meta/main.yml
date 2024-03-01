@@ -1,0 +1,30 @@
+---
+dependencies:
+  - role: geerlingguy.nodejs
+    vars:
+      nodejs_version: "20.x"
+
+galaxy_info:
+  role_name: nvchad
+  namespace: tolecnal
+  author: "Jostein Elvaker Haande <tolecnal@tolecnal.net"
+  description: Role to install and configure neovim with a default configuration, and required APT and Python packages.
+  license: "license (BSD, MIT)"
+  min_ansible_version: "2.15.0"
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - focal
+        - jammy
+    - name: Debian
+      versions:
+        - bullseye
+        - bookworm
+
+  galaxy_tags:
+    - neovim
+    - nvim
+    - console
+    - ripgrep
+    - linux

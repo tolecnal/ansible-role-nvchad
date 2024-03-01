@@ -1,0 +1,24 @@
+---
+- name: Get latest release information from GitHub
+  ansible.builtin.uri:
+    url: "https://api.github.com/repos/{{ ripgrep_owner }}/{{ ripgrep_repo }}/releases/latest"
+    return_content: true
+  register: github_response
+
+- name: Parse version number from GitHub response
+  ansible.builtin.set_fact:
+    latest_version: "{{ (github_response.json | json_query('tag_name')) | regex_replace('^v', '') }}"
+
+- name: Display latest version
+  ansible.builtin.debug:
+    msg: "Latest version: {{ latest_version }}"
+
+- name: Download .deb file from GitHub
+  ansible.builtin.get_url:
+    url: "https://github.com/{{ ripgrep_owner }}/{{ ripgrep_repo }}/releases/latest/download/{{ ripgrep_repo }}_{{ latest_version }}-1_amd64.deb"
+    dest: "{{ ripgrep_install_path }}"
+    mode: "0775"
+
+- name: Install APT package from .deb file
+  ansible.builtin.apt:
+    deb: "{{ ripgrep_install_path }}"

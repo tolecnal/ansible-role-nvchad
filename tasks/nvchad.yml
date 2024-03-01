@@ -1,0 +1,11 @@
+---
+- name: Clone the NvChad repository
+  ansible.builtin.git:
+    repo: https://github.com/NvChad/NvChad
+    depth: 1
+    dest: ~/.config/nvim
+
+- name: Install default configuration
+  ansible.builtin.git:
+    repo: https://github.com/NvChad/example_config.git
+    dest: ~/.config/nvim/lua/custom

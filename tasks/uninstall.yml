@@ -1,0 +1,15 @@
+---
+- name: Remove ~/.config/nvim directory
+  ansible.builtin.file:
+    path: "~/.config/nvim"
+    state: absent
+
+- name: Remove ~/.local/share/nvim directory
+  ansible.builtin.file:
+    path: "~/.local/share/nvim"
+    state: absent
+
+- name: Remove ~/.cache/nvim directory
+  ansible.builtin.file:
+    path: ~/.cache/nvim
+    state: absent

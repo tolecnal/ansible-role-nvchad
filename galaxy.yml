@@ -1,0 +1,25 @@
+---
+namespace: tolecnal
+name: nvchad
+version: "1.0.0"
+readme: README.md
+
+authors:
+  - "Jostein Elvaker Haande <tolecnal@tolecnal.net>"
+description: Install and configure neovim with the default configuration, as well as all the required Python and APT packages.
+license:
+  - MIT
+
+tags:
+  - neovim
+  - nvim
+  - console
+  - ripgrep
+  - linux
+
+repository: https://github.com/tolecnal/ansible-role-nvchad
+documentation: https://github.com/tolecnal/ansible-role-nvchad
+homepage: https://tolecnal.net
+issues: https://github.com/tolecnal/ansible-role-nvchad/issues
+
+build_ignore: []

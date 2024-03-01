@@ -1,0 +1,22 @@
+---
+- name: Setup Git PPA
+  ansible.builtin.apt_repository:
+    repo: ppa:git-core/ppa
+    state: present
+  when: ansible_distribution == 'Ubuntu'
+
+- name: Update apt cache
+  ansible.builtin.apt:
+    update_cache: true
+    cache_valid_time: 3600
+
+- name: Install APT packages
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ apt_packages }}"
+
+- name: Update all installed packages
+  ansible.builtin.apt:
+    name: git
+    state: latest

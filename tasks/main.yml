@@ -1,0 +1,15 @@
+---
+- name: Setup the required Python packages
+  ansible.builtin.include_tasks: python-packages.yml
+
+- name: Setup the required APT packages
+  ansible.builtin.include_tasks: apt-packages.yml
+
+- name: Setup the neovim PPA repository
+  ansible.builtin.include_tasks: neovim-ppa.yml
+
+- name: Install ripgrip
+  ansible.builtin.include_tasks: ripgrep.yml
+
+- name: Install NvChad
+  ansible.builtin.include_tasks: nvchad.yml

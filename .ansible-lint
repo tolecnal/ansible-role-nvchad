@@ -1,0 +1,9 @@
+---
+
+exclude_paths:
+    - ~/.ansible/roles
+
+skip_list:
+    - package-latest
+    - latest[git]
+    - yaml[line-length]

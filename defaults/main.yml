@@ -1,0 +1,27 @@
+---
+python_packages:
+  - jmespath
+  - yamllint
+  - yq
+
+apt_packages:
+  - curl
+  - software-properties-common
+  - ca-certificates
+  - gnupg
+  - curl
+  - build-essential
+  - python3-venv
+  - jq
+  - unzip
+  - git
+
+supported_architectures:
+  - amd64
+  - arm64
+  - armhf
+node_version: "20"
+
+ripgrep_owner: "BurntSushi"
+ripgrep_repo: "ripgrep"
+ripgrep_install_path: "/tmp/{{ ripgrep_repo }}.deb"
