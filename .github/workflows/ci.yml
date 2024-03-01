@@ -62,7 +62,7 @@ jobs:
         run: pip3 install ansible molecule molecule-plugins[docker] docker
 
       - name: Install external role geerlingguy.nodejs
-        run: ansible-galaxy install role geerlingguy.nodejs
+        run: ansible-galaxy role install geerlingguy.nodejs
 
       - name: Run Molecule tests.
         run: molecule test
