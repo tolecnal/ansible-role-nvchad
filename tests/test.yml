@@ -3,6 +3,8 @@
   hosts: localhost
   remote_user: root
 
+  vars:
+    nvchad_users: root
+
   roles:
-    - geerlingguy.nodejs
     - tolecnal.nvchad

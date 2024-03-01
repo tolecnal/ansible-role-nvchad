@@ -1,4 +1,6 @@
 ---
+nvchad_users: "{{ lookup('env', 'USER') }}"
+
 python_packages:
   - jmespath
   - yamllint
