@@ -1,15 +1,24 @@
 ---
+- name: Uninstall current installation of neovim
+  ansible.builtin.include_tasks: uninstall.yml
+  tags: [ 'never', 'debug', 'uninstall' ]
+
 - name: Setup the required Python packages
   ansible.builtin.include_tasks: python-packages.yml
+  tags: python
 
 - name: Setup the required APT packages
   ansible.builtin.include_tasks: apt-packages.yml
+  tags: apt
 
-- name: Setup the neovim PPA repository
-  ansible.builtin.include_tasks: neovim-ppa.yml
+- name: Setup the neovim snap package
+  ansible.builtin.include_tasks: neovim.yml
+  tags: neovim
 
 - name: Install ripgrip
   ansible.builtin.include_tasks: ripgrep.yml
+  tags: ripgrep
 
 - name: Install NvChad
   ansible.builtin.include_tasks: nvchad.yml
+  tags: nvchad

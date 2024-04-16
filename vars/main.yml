@@ -1,2 +1,9 @@
 ---
 # vars file for tolecnal.nvchad
+nvchad_ubuntu_git_latest: false
+
+nvchad_ubuntu_set_editor_local: true
+nvchad_ubuntu_set_editor_global: true
+nvchad_ubuntu_alternatives_priority: 100
+nvchad_ubuntu_alternatives_vim: true
+nvchad_ubuntu_alternatives_vi: true

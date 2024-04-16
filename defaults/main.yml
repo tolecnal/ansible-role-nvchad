@@ -17,6 +17,9 @@ apt_packages:
   - jq
   - unzip
   - git
+  - libfuse2
+  - squashfuse
+  - fuse
 
 supported_architectures:
   - amd64
@@ -24,6 +27,10 @@ supported_architectures:
   - armhf
 node_version: "20"
 
+neovim_owner: "neovim"
+neovim_repo: "neovim"
+neovim_appimage_path: "/tmp/nvim.appimage"
+
 ripgrep_owner: "BurntSushi"
 ripgrep_repo: "ripgrep"
-ripgrep_install_path: "/tmp/{{ ripgrep_repo }}.deb"
+ripgrep_installer_path: "/tmp/ripgrep.deb"

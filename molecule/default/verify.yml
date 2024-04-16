@@ -1,0 +1,43 @@
+---
+- name: Molecule verify
+  hosts: all
+  become: true
+  gather_facts: true
+
+  tasks:
+
+    - name: Check ripgrep version
+      ansible.builtin.command: "rg -V"
+      register: ripgrep_version_output
+      changed_when: ripgrep_version_output.rc != 0
+
+    - name: Set ripgrep version number
+      ansible.builtin.set_fact:
+        ripgrep_version_number: "{{ ripgrep_version_output.stdout | regex_search('ripgrep ([0-9.]+)', '\\1') | first }}"
+
+    - name: Output ripgrep version
+      ansible.builtin.debug:
+        msg: "Ripgrep version: {{ ripgrep_version_number }}"
+
+    - name: Check that ripgrep version if it matches minimum version
+      ansible.builtin.assert:
+        that:
+          - ripgrep_version_number is version_compare('14.0.0', '>=', version_type='semver')
+
+    - name: Check neovim version
+      ansible.builtin.command: "nvim --version"
+      register: neovim_version_output
+      changed_when: neovim_version_output.rc != 0
+
+    - name: Set neovim version number
+      ansible.builtin.set_fact:
+        neovim_version_number: "{{ neovim_version_output.stdout | regex_search('v([0-9.]+)', '\\1') | first }}"
+
+    - name: Output neovim version
+      ansible.builtin.debug:
+        msg: "Neovim version {{ neovim_version_number }}"
+
+    - name: Output neovim version if it matches minimum version
+      ansible.builtin.assert:
+        that:
+          - neovim_version_number is version_compare('0.9.5','>=', version_type='semver')

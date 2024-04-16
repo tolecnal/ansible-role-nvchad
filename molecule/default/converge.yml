@@ -19,24 +19,3 @@
 
   roles:
     - role: tolecnal.nvchad
-
-  post_tasks:
-    - name: Verify .tmux.conf exists
-      ansible.builtin.stat:
-        path: ~/.tmux.conf
-      register: conf_result
-
-    - name: File exists
-      ansible.builtin.debug:
-        msg: "tmux configuration file exists"
-      when: conf_result.stat.exists
-
-    - name: Verify that TPM is installed
-      ansible.builtin.stat:
-        path: ~/.tmux/plugins/tpm/tpm
-      register: tpm_result
-
-    - name: TPM is installed
-      ansible.builtin.debug:
-        msg: "TPM is installed"
-      when: tpm_result.stat.exists

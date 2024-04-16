@@ -1,17 +1,11 @@
 ---
-- name: Clone the NvChad repository
+- name: Install NvChad with starter configuration
   become: true
   become_user: "{{ item }}"
   ansible.builtin.git:
-    repo: https://github.com/NvChad/NvChad
-    depth: 1
+    repo: https://github.com/NvChad/starter.git
     dest: ~/.config/nvim
+    update: true
+    force: true
   with_items: "{{ nvchad_users }}"
-
-- name: Install default configuration
-  become: true
-  become_user: "{{ item }}"
-  ansible.builtin.git:
-    repo: https://github.com/NvChad/example_config.git
-    dest: ~/.config/nvim/lua/custom
-  with_items: "{{ nvchad_users }}"
+  tags: nvchad

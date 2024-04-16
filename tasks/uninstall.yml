@@ -1,15 +1,27 @@
 ---
 - name: Remove ~/.config/nvim directory
+  become_user: "{{ item }}"
   ansible.builtin.file:
-    path: "~/.config/nvim"
+    path: "~/.config/nvim/"
     state: absent
+  with_items: "{{ nvchad_users }}"
+  tags:
+   - uninstall
 
 - name: Remove ~/.local/share/nvim directory
+  become_user: "{{ item }}"
   ansible.builtin.file:
-    path: "~/.local/share/nvim"
+    path: "~/.local/share/nvim/"
     state: absent
+  with_items: "{{ nvchad_users }}"
+  tags:
+   - uninstall
 
 - name: Remove ~/.cache/nvim directory
+  become_user: "{{ item }}"
   ansible.builtin.file:
-    path: ~/.cache/nvim
+    path: "~/.cache/nvim/"
     state: absent
+  with_items: "{{ nvchad_users }}"
+  tags:
+   - uninstall

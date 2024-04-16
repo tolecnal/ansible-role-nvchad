@@ -1,0 +1,101 @@
+---
+- name: Get latest neovim release information from GitHub
+  ansible.builtin.uri:
+    url: "https://api.github.com/repos/{{ neovim_owner }}/{{ neovim_repo }}/releases/latest"
+    return_content: true
+  register: github_response
+  tags: neovim
+
+- name: Parse neovim version number from GitHub response
+  ansible.builtin.set_fact:
+    latest_version: "{{ (github_response.json | json_query('tag_name')) | regex_replace('^v', '') }}"
+  tags: neovim
+
+- name: Display latest neovim version
+  ansible.builtin.debug:
+    msg: "Latest version: {{ latest_version }}"
+  tags: neovim
+
+- name: Download latest neovim appimage from GitHub
+  ansible.builtin.get_url:
+    url: "https://github.com/{{ neovim_owner }}/{{ neovim_repo }}/releases/download/v{{ latest_version }}/nvim.appimage"
+    dest: "{{ neovim_appimage_path }}"
+    mode: "0777"
+  tags: neovim
+
+- name: Copy neovim appimage to /usr/bin
+  ansible.builtin.copy:
+    src: "{{ neovim_appimage_path }}"
+    dest: /usr/bin/nvim.appimage
+    owner: root
+    group: root
+    mode: "0777"
+  tags: neovim
+
+- name: Add nvim alternative
+  community.general.alternatives:
+    name: nvim
+    path: /usr/bin/nvim.appimage
+    link: /usr/bin/nvim
+    priority: "{{ nvchad_ubuntu_alternatives_priority }}"
+    state: auto
+  tags: neovim
+
+- name: Add vim alternative for nvim
+  community.general.alternatives:
+    name: vim
+    path: /usr/bin/nvim.appimage
+    link: /usr/bin/vim
+    priority: "{{ nvchad_ubuntu_alternatives_priority }}"
+    state: auto
+  when: nvchad_ubuntu_alternatives_vim
+  tags: neovim
+
+- name: Add vi alternative for nvim
+  community.general.alternatives:
+    name: vi
+    path: /usr/bin/nvim.appimage
+    link: /usr/bin/vi
+    priority: "{{ nvchad_ubuntu_alternatives_priority }}"
+    state: auto
+  when: nvchad_ubuntu_alternatives_vi
+  tags: neovim
+
+- name: Get shell for each user
+  ansible.builtin.getent:
+    database: passwd
+  tags: neovim
+
+- name: Set $EDITOR for the current user (zsh)
+  become: true
+  become_user: "{{ item }}"
+  ansible.builtin.lineinfile:
+    dest: "~/.zshrc"
+    line: 'export EDITOR="nvim"'
+    insertafter: EOF
+  when:
+    - getent_passwd[item][5] == '/bin/zsh'
+    - nvchad_ubuntu_set_editor_local
+  with_items: "{{ nvchad_users }}"
+  tags: neovim
+
+- name: Set $EDITOR for the current user (bash)
+  become: true
+  become_user: "{{ item }}"
+  ansible.builtin.lineinfile:
+    dest: "{{ ansible_env.HOME }}/.bashrc"
+    line: 'export EDITOR="nvim"'
+    insertafter: EOF
+  when:
+    - getent_passwd[item][5] == '/bin/bash'
+    - nvchad_ubuntu_set_editor_local
+  with_items: "{{ nvchad_users }}"
+  tags: neovim
+
+- name: Set $EDITOR globally
+  ansible.builtin.lineinfile:
+    dest: /etc/environment
+    line: 'EDITOR="nvim"'
+    insertafter: EOF
+  when: nvchad_ubuntu_set_editor_global
+  tags: neovim
