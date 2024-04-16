@@ -30,6 +30,7 @@
     owner: root
     group: root
     mode: "0777"
+    remote_src: true
   tags: neovim
 
 - name: Add nvim alternative

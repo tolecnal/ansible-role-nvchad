@@ -6,7 +6,7 @@
     state: absent
   with_items: "{{ nvchad_users }}"
   tags:
-   - uninstall
+    - uninstall
 
 - name: Remove ~/.local/share/nvim directory
   become_user: "{{ item }}"
@@ -15,7 +15,7 @@
     state: absent
   with_items: "{{ nvchad_users }}"
   tags:
-   - uninstall
+    - uninstall
 
 - name: Remove ~/.cache/nvim directory
   become_user: "{{ item }}"
@@ -24,4 +24,4 @@
     state: absent
   with_items: "{{ nvchad_users }}"
   tags:
-   - uninstall
+    - uninstall

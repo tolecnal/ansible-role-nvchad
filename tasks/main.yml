@@ -1,7 +1,7 @@
 ---
 - name: Uninstall current installation of neovim
   ansible.builtin.include_tasks: uninstall.yml
-  tags: [ 'never', 'debug', 'uninstall' ]
+  tags: ["never", "debug", "uninstall"]
 
 - name: Setup the required Python packages
   ansible.builtin.include_tasks: python-packages.yml
