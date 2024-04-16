@@ -1,0 +1,27 @@
+---
+releases:
+  1.0.4:
+    release_date: '2024-04-16'
+    changes:
+      major_changes:
+        - Major refactoring of code.
+        - Switched to using app image as default, instead of unstable PPA.
+  1.0.3:
+    release_date: '2024-03-01'
+    changes:
+      major_changes:
+        - Added ability to run role for several users, using `nvchad_users`.
+  1.0.2:
+    release_date: '2024-03-01'
+    changes:
+      minor_changes:
+        - Misc. bugfixes.
+  1.0.1:
+    release_date: '2024-03-01'
+    changes:
+      minor_changes:
+        - Misc. bugfixes
+  1.0.0:
+    release_date: '2024-03-01'
+    changes:
+      release_summary: Initial release.

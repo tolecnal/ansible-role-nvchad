@@ -1,5 +1,6 @@
 ---
 - name: Remove ~/.config/nvim directory
+  become: true
   become_user: "{{ item }}"
   ansible.builtin.file:
     path: "~/.config/nvim/"
@@ -9,6 +10,7 @@
     - uninstall
 
 - name: Remove ~/.local/share/nvim directory
+  become: true
   become_user: "{{ item }}"
   ansible.builtin.file:
     path: "~/.local/share/nvim/"
@@ -18,6 +20,7 @@
     - uninstall
 
 - name: Remove ~/.cache/nvim directory
+  become: true
   become_user: "{{ item }}"
   ansible.builtin.file:
     path: "~/.cache/nvim/"
