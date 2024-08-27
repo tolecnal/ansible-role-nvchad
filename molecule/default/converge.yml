@@ -17,10 +17,17 @@
       changed_when: false
       when: ansible_os_family == 'Debian'
 
-    - name: Ensure the EXTERNALLY-MANAGED file is deleted if it exists
+    - name: Check if EXTERNALLY-MANAGED file exists
+      ansible.builtin.stat:
+        path: /usr/lib/python3.11/EXTERNALLY-MANAGED
+      register: file_stat
+
+    - name: Remove EXTERNALLY-MANAGED file if it exists
       ansible.builtin.file:
         path: /usr/lib/python3.11/EXTERNALLY-MANAGED
         state: absent
+      when: file_stat.stat.exists
+      changed_when: false
 
   roles:
     - role: tolecnal.nvchad
