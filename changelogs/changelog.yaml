@@ -1,40 +1,47 @@
 ---
+ancestor: null
 releases:
-  1.0.6:
-    release_date: '2024-08-28'
+  1.0.0:
+    changes:
+      release_summary: Initial release.
+    release_date: '2024-03-01'
+  1.0.1:
     changes:
       minor_changes:
-        - Updated README
-        - No longer required to specify nvchad_users, now optional
-  1.0.5:
-    release_date: '2024-08-27'
+        - Misc. bugfixes
+      release_summary: Bugfixes
+    release_date: '2024-03-01'
+  1.0.2:
     changes:
       minor_changes:
-        - Updated APT packages to include luarocks
-        - Ensuring the NPM package tree-sitter-cli is installed globally
-        - Fixing issue with path to .bashrc when Bash is used as the user shell
+        - Misc. bugfixes.
+      release_summary: bugfixes
+    release_date: '2024-03-01'
+  1.0.3:
+    changes:
+      major_changes:
+        - Added ability to run role for several users, using `nvchad_users`.
+      release_summary: Added ability to specify which users to apply role to.
+    release_date: '2024-03-01'
   1.0.4:
-    release_date: '2024-04-16'
     changes:
       major_changes:
         - Major refactoring of code.
         - Switched to using app image as default, instead of unstable PPA.
-  1.0.3:
-    release_date: '2024-03-01'
-    changes:
-      major_changes:
-        - Added ability to run role for several users, using `nvchad_users`.
-  1.0.2:
-    release_date: '2024-03-01'
+      release_summary: Refactoring of code, and switched to nvim app image.
+    release_date: '2024-04-16'
+  1.0.5:
     changes:
       minor_changes:
-        - Misc. bugfixes.
-  1.0.1:
-    release_date: '2024-03-01'
+        - Ensuring the NPM package tree-sitter-cli is installed globally
+        - Fixing issue with path to .bashrc when Bash is used as the user shell
+        - Updated APT packages to include luarocks
+      release_summary: Fixing prerequisites issuses, and bashrc bug.
+    release_date: '2024-08-27'
+  1.0.6:
     changes:
       minor_changes:
-        - Misc. bugfixes
-  1.0.0:
-    release_date: '2024-03-01'
-    changes:
-      release_summary: Initial release.
+        - No longer required to specify nvchad_users, now optional
+        - Updated README
+      release_summary: nvchad_users now optional.
+    release_date: '2024-08-28'
