@@ -7,6 +7,31 @@ This role helps you to install and configure neovim with the default configurati
 Python packages:
 
 - python3-jmespath
+- yamllint
+- yq
+
+NPM packages:
+
+- tree-sitter-cli
+
+APT packages:
+
+- curl
+- software-properties-common
+- ca-certificates
+- gnupg
+- curl
+- build-essential
+- python3-venv
+- jq
+- unzip
+- git
+- libfuse2
+- squashfuse
+- fuse
+- luarocks
+
+All the requirements will be installed by the role.
 
 ## Role variables
 
