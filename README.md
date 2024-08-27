@@ -51,3 +51,19 @@ The GitHub repository name for `ripgrep`: ripgrep
 
     ripgrep_install_path:
 The ripgrep temporary installation file location: `/tmp/{{ repo }}.deb`
+
+## Example playbook
+
+Below is is a sample playbook to deploy nvchad to your system.
+
+```yaml
+---
+
+- name: Setup nvchad
+  hosts: all
+  become: true
+  gather_facts: true
+
+  roles:
+    - tolecnal.nvchad
+```
