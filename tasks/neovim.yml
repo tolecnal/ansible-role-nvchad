@@ -1,4 +1,8 @@
 ---
+- name: Set nvchad_users if it doesn't exist or is empty
+  ansible.builtin.set_fact:
+    nvchad_users: "{{ nvchad_users | default(lookup('env', 'USER'), true) }}"
+
 - name: Get latest neovim release information from GitHub
   ansible.builtin.uri:
     url: "https://api.github.com/repos/{{ neovim_owner }}/{{ neovim_repo }}/releases/latest"
