@@ -10,3 +10,4 @@ ignore: |
   .github/workflows/stale.yml
   changelogs/config.yaml
   changelogs/.plugin-cache.yaml
+  changelogs/changelog.yaml
