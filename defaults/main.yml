@@ -20,6 +20,7 @@ apt_packages:
   - libfuse2
   - squashfuse
   - fuse
+  - luarocks
 
 supported_architectures:
   - amd64

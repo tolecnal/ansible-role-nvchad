@@ -4,3 +4,8 @@
     name: "{{ item }}"
   with_items: "{{ python_packages }}"
   tags: python
+
+- name: Install "coffee-script" node.js package globally.
+  community.general.npm:
+    name: tree-sitter-cli
+    global: true

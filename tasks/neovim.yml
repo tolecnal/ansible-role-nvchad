@@ -84,7 +84,7 @@
   become: true
   become_user: "{{ item }}"
   ansible.builtin.lineinfile:
-    dest: "{{ ansible_env.HOME }}/.bashrc"
+    dest: "~/.bashrc"
     line: 'export EDITOR="nvim"'
     insertafter: EOF
   when:
