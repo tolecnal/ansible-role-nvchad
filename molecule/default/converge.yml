@@ -17,5 +17,10 @@
       changed_when: false
       when: ansible_os_family == 'Debian'
 
+    - name: Ensure the EXTERNALLY-MANAGED file is deleted if it exists
+      ansible.builtin.file:
+        path: /usr/lib/python3.11/EXTERNALLY-MANAGED
+        state: absent
+
   roles:
     - role: tolecnal.nvchad

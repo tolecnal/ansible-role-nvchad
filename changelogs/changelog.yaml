@@ -1,5 +1,12 @@
 ---
 releases:
+  1.0.5:
+    release_date: '2024-08-27'
+    changes:
+      minor_changes:
+        - Updated APT packages to include luarocks
+        - Ensuring the NPM package tree-sitter-cli is installed globally
+        - Fixing issue with path to .bashrc when Bash is used as the user shell
   1.0.4:
     release_date: '2024-04-16'
     changes:
